@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  -var result = [pants1, pants2, pants3]
+  p(id ="1") Tester
+  script.
+    class Denim{
+      -let pants1 = new Denim(32,32,True)
+      -let pants2 = new Denim(34,34,False)
+      -let pants3 = new Denim(40,36,False)
+      constructor(length, width, stretchy) {
+        document.getElementById('1').innerHTML = "Yes"
+        this.length = length 
+        this.width = width 
+        this.stretchy = stretchy
+      }
+    }
+
+    var clap_count = 0
+    function test() {
+    clap_count += 2
+    document.getElementById("target").innerHTML = clap_count}

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p(id="1") Welcome to Drake's Page #{title}
+  button(id="2" type="button", class="btn btn-secondary" onClick="test()") Press Me
+  div(id="target") Clap for me
+  script.
+    class Denim {
+      constructor(Length, Width, Stretchy) {
+      }
+    }
+
+    var clap_count = 0
+    function test() {
+      clap_count += 2
+      document.getElementById("target").innerHTML = clap_count
+      }
