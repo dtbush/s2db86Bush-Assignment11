@@ -10,7 +10,7 @@ var denim_controller = require('../controllers/denimSchemas');
 // GET resources base. 
 router.get('/', api_controller.api); 
  
-/// COSTUME ROUTES /// 
+/// DENIM ROUTES /// 
  
 // POST request for creating a Costume.  
 router.post('/denims', denim_controller.denim_create_post); 
