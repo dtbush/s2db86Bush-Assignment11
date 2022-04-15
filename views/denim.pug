@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title
-  -var result = [pants1, pants2, pants3]
-  p(id ="1") Tester
+  -let items = results
+  p(id ="1") This is a test result
   script.
     class Denim{
       -let pants1 = new Denim(32,32,True)
@@ -21,3 +21,5 @@ block content
     function test() {
     clap_count += 2
     document.getElementById("target").innerHTML = clap_count}
+
+
