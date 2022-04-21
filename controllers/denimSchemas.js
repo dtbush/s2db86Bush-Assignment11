@@ -50,8 +50,16 @@ exports.denim_create_post = async function(req, res) {
 }; 
  
 // Handle denim delete form on DELETE. 
-exports.denim_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: denim delete DELETE ' + req.params.id); 
+exports.denim_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Denim.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
 }; 
  
 // Handle Denim update form on PUT. 

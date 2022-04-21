@@ -17,6 +17,8 @@ var usersRouter = require('./routes/users');
 var denimSchemaRouter = require('./routes/denimSchema');
 var addmodsRouter = require('./routes/addmods');
 var resourceRouter = require('./routes/resource');
+var detailRouter = require('./routes/denimSchema');
+var createRouter = require('./routes/denimSchema');
 var app = express();
 
 // view engine setup
@@ -33,6 +35,8 @@ app.use('/users', usersRouter);
 app.use('/denimSchema', denimSchemaRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/resource', resourceRouter);
+app.use('/detail', detailRouter);
+app.use('/create', createRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
