@@ -2,24 +2,16 @@ extends layout
 
 block content
   h1= title
-  -let items = results
-  p(id ="1") This is a test result
-  script.
-    class Denim{
-      -let pants1 = new Denim(32,32,True)
-      -let pants2 = new Denim(34,34,False)
-      -let pants3 = new Denim(40,36,False)
-      constructor(length, width, stretchy) {
-        document.getElementById('1').innerHTML = "Yes"
-        this.length = length 
-        this.width = width 
-        this.stretchy = stretchy
-      }
-    }
+  -let items = resultstest
+  p(id ="1") Search Results
+  -let results = [instance1]
+  div(class = "container-fluid") outermost
+  div(class = "row") middle
+  each item in results
+    li= item
 
-    var clap_count = 0
-    function test() {
-    clap_count += 2
-    document.getElementById("target").innerHTML = clap_count}
+  script
+    instance1 = new denimSchema({length: 31, width: 32, stretchy: false}); 
+  
 
 

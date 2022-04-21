@@ -1,0 +1,44 @@
+extends layout 
+ 
+block content 
+  h1= title 
+
+  - let denimid = toShow._id 
+  - let denim_length = toShow.length
+  - let denim_width = toShow.width
+  - let denim_stretchy = toShow.stretchy
+
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{denimid} 
+  - let actionid = "/resource/denims/" + denimid 
+
+  form(id='DenimForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.denimAttr(for='length') Denim Length
+        input#denimplength(type='number', name='length', value= denim_length) 
+    div.form-group 
+        label.denimAttr(for='width') Denim Width
+        input#denimpwidth(type='number', name='width', value= denim_width) 
+    div.form-group 
+        label.denimAttr(for='stretchy') Denim Stretchy
+        input#denimpstretchy(type='boolean', name='stretchy', value= denim_stretchy) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['DenimForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 

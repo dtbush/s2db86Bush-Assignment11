@@ -63,11 +63,11 @@ exports.denim_delete = async function(req, res) {
 }; 
  
 // Handle Denim update form on PUT. 
-/*
+
 exports.denim_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: Denim update PUT' + req.params.id); 
 }; 
-*/
+
 // Handle Costume update form on PUT. 
 exports.denim_update_put = async function(req, res) { 
     console.log(`update on id ${req.params.id} with body 
@@ -99,4 +99,57 @@ exports.denim_view_all_Page = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+// Handle building the view for updating a Denim. 
+// query provides the id 
+exports.denim_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Denim.findById(req.query.id) 
+        res.render('denimupdate', { title: 'Denim Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a show one view with id specified by query 
+exports.denim_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Denim.findById( req.query.id) 
+        res.render('denimdetail',  
+{ title: 'Denim Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+exports.denim_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('denimcreate', { title: 'Denim Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a delete one view with id from query 
+exports.denim_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Denim.findById(req.query.id) 
+        res.render('denimdelete', { title: 'Denim Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 }; 
