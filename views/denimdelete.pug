@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let denimid = toShow._id 
+    - let denim_length = toShow.length
+    - let denim_width = toShow.width
+    - let denim_stretchy = toShow.stretchy
+    - let actionid = "/resource/denims/" + denimid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='denimAttr mr-3') Denim ID is: 
+        div #{denimid} 
+      div.row 
+        div(class='denimAttr mr-3') Denim Length is: 
+        div #{denim_length} 
+      div.row 
+        div(class='denimAttr mr-3') Denim Width is: 
+        div #{denim_width} 
+      div.row 
+        div(class='denimAttr mr-3') denim Stretchy is: 
+        div #{denim_stretchy} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the denim collection 
+      window.location.href='/resource/denims'
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/resource/denims' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 

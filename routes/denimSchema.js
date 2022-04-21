@@ -21,6 +21,8 @@ router.get('/create', denim_controlers.denim_create_Page);
 /* GET create update page */ 
 router.get('/update', denim_controlers.denim_update_Page); 
 
+/*GET delete costume page */ 
+router.get('/delete', denim_controlers.denim_delete_Page);
 module.exports = router;
 
 

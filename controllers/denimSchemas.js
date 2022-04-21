@@ -68,7 +68,7 @@ exports.denim_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Denim update PUT' + req.params.id); 
 }; 
 
-// Handle Costume update form on PUT. 
+// Handle Denim update form on PUT. 
 exports.denim_update_put = async function(req, res) { 
     console.log(`update on id ${req.params.id} with body 
 ${JSON.stringify(req.body)}`) 
