@@ -1,17 +1,20 @@
-extends layout
+extends layout 
+ 
+block content 
+  h1= title 
+  - let items = results
+  div(class="container-fluid") 
+    div(class="row m-1") 
+      each item in items  
+        -let destination = `dispatch(\"/denimSchema/update?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.length}(#{item.width}) is #{item.stretchy}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
 
-block content
-  h1= title
-  -let items = resultstest
-  p(id ="1") Search Results
-  -let results = [instance1]
-  div(class = "container-fluid") outermost
-  div(class = "row") middle
-  each item in results
-    li= item
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
 
-  script
-    instance1 = new denimSchema({length: 31, width: 32, stretchy: false}); 
   
 
 
